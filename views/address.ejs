@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sell Your Car</title>
+        <style>
+            body{
+                background-color: rgb(245, 240, 240);
+                margin:0px;
+                padding: 0px;
+            }
+            .head{
+                width:100%;
+                height:50px;
+                background-color: rgb(255, 174, 0);
+            }
+            .logo{
+                width: 15%;
+                float : left;
+            }
+            .logout{
+                float:right;
+            }
+            .body h2{
+                margin: 3%;
+                margin-bottom: 0%;
+            }
+            form{
+                width:40%;
+                margin-left: 30%;
+            }
+            input{
+                width: 90%;
+                padding: 10px;
+                margin: 2%;
+                border:0px;
+            }
+            input[type='submit']{
+                color:orange;
+                background-color: orchid;
+                font-size: large;
+            }
+            table,tr,td{
+                border: 2px solid black;
+                width: 50%;
+                border-collapse: collapse;
+                margin-left: 25%;
+                font-size: larger;
+                margin-left: 0px;
+                padding-left: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <div class="head">
+                <div class="logo" >
+                    <a href="/"><img src="logo.jpg" width="100px"height="50px"></a>
+                </div>
+                <div class="logout">
+                    <a href="/logout"><img src="logout.png" width="50px" height="50px"></a>
+                </div>
+            </div>
+            <div class="body">
+            <% if(!address){ %>
+            <form action="/addaddress" method="POST">
+                <input type="text" name="dno" placeholder="Door No/Flat No">
+                <input type="text" name="landmark" placeholder="Landmark">
+                <input type="text" name="street" placeholder="Street">
+                <input type="text" name="city" placeholder="City">
+                <input type="text" name="state" placeholder="State">
+                <input type="text" name="country" placeholder="Country"> 
+                <input type="submit" name="submit" value="Add Address">
+            </form>
+            <% } %>
+            <% if(address){%>
+                <table>
+                    <tr>
+                        <td colspan="2">Address</td>
+                    </tr>
+                    <tr>
+                        <td>Door No</td>
+                        <td><%= address.dno%></td>
+                    </tr>
+                    <tr>
+                        <td>Landmark</td>
+                        <td><%= address.landmark%></td>
+                    </tr>
+                    <tr>
+                        <td>Street</td>
+                        <td><%= address.street%></td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td><%= address.city%></td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td><%= address.state%></td>
+                    </tr>
+                    <tr>
+                        <td>Country</td>
+                        <td><%= address.country%></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"style="text-align: center;width:100%;"><a href="/changeaddress">Change Address</a></td>
+                    </tr>
+                </table>
+                <% } %>
+            </div>
+        </div>
+    </body>
+</html>

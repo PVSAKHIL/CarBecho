@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>login</title>
+        <link rel="stylesheet" type="text/css" href="login.css">
+    </head>
+    <body>
+        <div class="main">
+        <div class="header"><h1>Login</h1></div>
+        <div class='form'>
+        <p><%= msg %></p>
+        <form action='/stafflogin' method='POST'>
+            <input type='email' name='email' value='' placeholder="Email">
+            <input type='password' name='password' placeholder="Password">
+            <input type="submit" name="login" value="Login">
+        </form>
+        </div>
+        <div class="image" id="image1">
+            <img src="loginImage.jpg" width="100%">
+        </div>
+        </div>
+    </body>
+</html>

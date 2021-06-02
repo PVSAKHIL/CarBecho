@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Staff Register</title>
+        <link rel="stylesheet" type="text/css" href="register.css">
+    </head>
+    <body>
+        <div class="main">
+            <div class="header">
+            <h1>Signup</h1>
+            </div>
+        <div class='form'>
+        <form action='/staffregister' method='POST'>
+            <p style="color:red"><%= msg %></p>
+            <input type="text" name="name" placeholder="Name">
+            <input type='email' name='email' placeholder="Email">
+            <input type="text" name="phone" placeholder="Phone Number">
+            <input type="submit" name="signup" value="Signup">
+        </form>
+        </div>
+        <div class="image" id="image1">
+            <img src="loginImage.jpg" width="100%">
+        </div>
+        </div>
+    </body>
+</html>

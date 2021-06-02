@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>carbecho</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+            body{
+                background-color: rgb(245, 240, 240);
+            }
+            .items{
+                float:left;
+                display: block;
+                width: 100%;
+                margin: 10px;
+            }
+            .head{
+                width:100%;
+                height:50px;
+                background-color: rgb(255, 174, 0);
+            }
+            .logo{
+                width: 10%;
+                float : left;
+            }
+            .orders{
+                width:10%;
+                float:left;
+                text-align:center ;
+                font-size: larger;
+                padding:10px;
+            }
+            .orders a{
+                text-decoration: none;
+            }
+            .logout{
+                float:right;
+            }
+            .media-body{
+                font-size: large;
+            }
+            .media-body h4{
+                font-size: x-large;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <div class="head">
+                <div class="logo" >
+                    <a href="/"><img src="logo.jpg" width="100px"height="50px"></a>
+                </div>
+                <div class="logout">
+                    <a href="/logout"><img src="logout.png" width="50px" height="50px"></a>
+                </div>
+            </div>
+            <div class="body">
+                <% for(i=0;i<cars.length;i++){ %>
+                    <form action="/item1" method="POST" id="<%=cars[i]._id %>">
+                        <input type="text" name="id" value= <%= cars[i]._id %> style="display:none">
+                <div class="items">
+                    <div class="media-left" style="width:35%;" >
+                      <img src="<%=cars[i].image.path%>" class="media-object" style="cursor:pointer"width="100%" onclick=document.getElementById("<%=cars[i]._id%>").submit()>
+                    </div>
+                </form>
+                    <div class="media-body">
+                        <h4 class="media-heading"><%= cars[i].model%></h4>
+                        <p>Brand: <%=cars[i].brand %></p>
+                        <p>Price: <%=cars[i].price %></p>
+                        <p>Order placed on <%= cars[i].boughtdate%></p> 
+                        <form action="/cancelorder" method="POST">
+                            <input type="hidden" name="id" value="<%=cars[i]._id%>">
+                            <input type="submit" name="submit" value="Cancel Order">
+                        </form>
+                    </div>
+                </div>
+                <% } %>
+                </div>
+        </div>
+    </body>
+</html>

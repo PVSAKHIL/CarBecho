@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>login</title>
+        <link rel="stylesheet" type="text/css" href="login.css">
+    </head>
+    <body>
+        <div class="main">
+        <div class="header"><h1>Create Password</h1></div>
+        <div class='form'>
+        <p><%= msg %></p>
+        <form action='/verifyingotp' method='POST'>
+            <input type='email' name='email' value="" placeholder="Email">
+            <input type="submit" name="submit" value="Submit">
+        </form>
+        </div>
+        <div class="image" id="image1">
+            <img src="loginImage.jpg" width="100%">
+        </div>
+        </div>
+    </body>
+</html>

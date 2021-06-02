@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>otp</title>
+        <link rel="stylesheet" type="text/css" href="login.css">
+    </head>
+    <body>
+        <div class="main">
+        <div class="header"><h1>Verify OTP</h1></div>
+        <div class='form'>
+        <p><%= msg %></p>
+        <form action='/verifyotp' method='POST'>
+            <input type="hidden" name="email" value="<%=email%>">
+            <input type='text' name='otp' placeholder="Enter OTP">
+            <input type="submit" name="submit" value="Verify OTP">
+        </form>
+        <form action="/staffresendotp" method="POST">
+        <input type="hidden" name="email" value="<%=email%>">
+        <input type="submit" name="login" value="Resend OTP">
+        </form>
+        </div>
+        <div class="image" id="image1">
+            <img src="loginImage.jpg" width="100%">
+        </div>
+        </div>
+    </body>
+</html>

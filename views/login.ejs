@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>login</title>
+        <link rel="stylesheet" type="text/css" href="login.css">
+    </head>
+    <body>
+        <div class="main">
+        <div class="header"><h1>Login</h1></div>
+        <div class='form'>
+        <p><%= msg %></p>
+        <form action='/login' method='POST'>
+            <input type='email' name='email' value='' placeholder="Email">
+            <input type='password' name='password' id="password" placeholder="Password">
+            <i class="fas fa-eye" style = "cursor: pointer" onclick="show()"></i> 
+            <input type="submit" name="login" value="Login">
+        </form>
+        <a href="/register">new user?</a><br>
+        <a href="/forgot">forgot password</a>
+        </div>
+        <div class="image" id="image1">
+            <img src="loginImage.jpg" width="100%">
+        </div>
+        </div>
+        <script>
+             function show(){
+                var password = document.getElementById("password");
+                var icon = document.querySelector(".fas")
+                // ========== Checking type of password ===========
+                if(password.type === "password"){
+                    password.type = "text";
+                }
+                else {
+                    password.type = "password";
+                }
+                };
+        </script>
+    </body>
+</html>
