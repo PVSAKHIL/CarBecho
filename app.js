@@ -11,7 +11,7 @@ var fs = require('fs');
 var path = require('path');
 var multer= require('multer');
 const nodemailer = require('nodemailer');
-require('dotenv/config');
+require('dotenv').config();
 
 const app=express()
 var msg="";
@@ -26,7 +26,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect('mongodb://localhost:27017/carbecho', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.DATABASE, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const userschema= new mongoose.Schema({
     name: String,
@@ -57,7 +57,6 @@ const carschema=new mongoose.Schema({
   orderedby: {type: String,default: ""},
   boughtdate: {type: Date,default: Date.now()},
   image: {
-    contentType: String,
     path: String
   }
 });
@@ -179,8 +178,8 @@ let transporter = nodemailer.createTransport({
   secure: true,
   service: 'gmail',
   auth:{
-      user: "nitdcollegeelections@gmail.com",
-      pass: "nitd@183"
+      user: process.env.USER_NAME,
+      pass: process.env.PASSWORD
   }
 });
 
@@ -201,7 +200,6 @@ app.get('/',function(req,res){
         var cars=Car.find({orderedby:""},function(err,foundcars){
           res.render('main',{email: req.user.email,cars:foundcars ,dirname: __dirname});
         })
-        console.log("hi");
     }
     else{
         console.log("hello");
@@ -441,7 +439,6 @@ app.post('/register',function(req,res){
       });
   })
         app.post('/staffregister',function(req,res){
-          console.log(req)
           if(/[a-zA-Z ]*/.test(req.body.name)===false){
               var msg="invalid name";
               res.render('staffregister',{msg: msg});
@@ -627,9 +624,7 @@ app.post("/staff",upload.single('photo'),function(req,res){
     price: req.body.price,
     others: req.body.others,
     image: {
-      contentType: req.file.mimetype,
       path: req.file.path.slice(7,)
-      //image: new Buffer.from(encoded_image,'base64')
   }});
   car.save();
   res.redirect('staff');
@@ -715,6 +710,6 @@ app.post("/item1",function(req,res){
     res.render("item1",{car: foundcar});
   })
 });
-app.listen(3001,function(req,res){
+app.listen(process.env.PORT,function(req,res){
     console.log("server started");
 });
