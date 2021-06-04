@@ -15,6 +15,7 @@ require('dotenv').config();
 
 const app=express()
 var msg="";
+var i=0;
 app.use(bp.urlencoded({extended:true}))
 app.use(express.static('public'));
 app.set('view engine','ejs');
@@ -34,7 +35,8 @@ const userschema= new mongoose.Schema({
     phone :String,
     password: String,
     otp: String,
-    otpexpire: Date
+    otpexpire: Date,
+    username: Number
 });
 
 const staffschema= new mongoose.Schema({
@@ -356,8 +358,10 @@ app.post('/register',function(req,res){
                     name : foundUser.name,
                     email : foundUser.email,
                     phone : foundUser.phone,
-                    password : req.body.password
+                    password : req.body.password,
+                    username : i
                 })
+                i+=1;
                 user.save();
                 Dummyuser.deleteOne({email: req.body.email},function(err,bool){
                   res.redirect('login');
