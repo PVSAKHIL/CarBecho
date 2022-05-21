@@ -666,7 +666,7 @@ app.post("/cancelorder",function(req,res){
 });
 
 app.post("/search",function(req,res){
-  Car.find({$and:[{brand: req.body.car.toLowerCase()},{orderedby:""}]},function(err,foundcars){
+  Car.find({$and:[{brand: req.body.car},{orderedby:""}]},function(err,foundcars){
     res.render("main",{email:req.user.email,cars:foundcars});
   });
 });
